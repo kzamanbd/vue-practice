@@ -1,20 +1,20 @@
 <template>
     <div>
         <Navbar />
-        <router-view></router-view>
+        <router-view />
     </div>
 </template>
 
 <script>
-    import Navbar from "@/components/HeaderNav.vue";
+    import Navbar from '@/components/HeaderNav.vue';
     export default {
-        name: "App",
+        name: 'App',
         components: {
             Navbar,
         },
         created() {
-            this.$store.dispatch("user");
-            this.$store.dispatch("serverInit");
+            this.$store.dispatch('user');
+            this.$store.dispatch('serverInit');
         },
     };
 </script>

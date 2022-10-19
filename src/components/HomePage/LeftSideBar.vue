@@ -15,7 +15,7 @@
 
 <script>
     export default {
-        name: "LeftSideBarComponent",
+        name: 'LeftSideBarComponent',
         data() {
             return {
                 errors: [],

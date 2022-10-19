@@ -1,3 +1,3 @@
-import useAxios from "@/plugins/useAxios";
+import axios from "@/plugins/axios";
 
-export const InitApp = () => useAxios.get("/init-app");
+export const InitApp = () => axios.get("/init-app");

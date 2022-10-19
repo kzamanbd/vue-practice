@@ -1,8 +1,8 @@
-// plugins/useAxios.js
+// plugins/axios.js
 import axios from "axios";
 const BASE_URL = "https://api.kzaman.me/api";
 //set default value on axios
-const useAxios = axios.create({
+const httpRequest = axios.create({
     baseURL: BASE_URL,
     headers: {
         Accept: "application/json",
@@ -10,7 +10,7 @@ const useAxios = axios.create({
     },
 });
 
-useAxios.interceptors.request.use(
+httpRequest.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem("token")
             ? localStorage.getItem("token")
@@ -25,7 +25,7 @@ useAxios.interceptors.request.use(
     }
 );
 
-useAxios.interceptors.response.use(
+httpRequest.interceptors.response.use(
     (response) => {
         if (response.status === 200 || response.status === 201) {
             return Promise.resolve(response);
@@ -59,4 +59,4 @@ useAxios.interceptors.response.use(
     }
 );
 
-export default useAxios;
+export default httpRequest;

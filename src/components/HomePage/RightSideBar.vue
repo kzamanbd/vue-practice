@@ -1,15 +1,13 @@
 <template>
     <div class="card bg-transparent border-0">
-        <div class="card-body p-0" v-if="!authUser">
+        <div v-if="!authUser" class="card-body p-0">
             <h4>লগইন করুন</h4>
             <SocialLogin />
         </div>
-        <div class="card-body p-0" v-else>
+        <div v-else class="card-body p-0">
             <h4 class="user__link p-3">
                 <span class="d-flex align-items-center px-3">
-                    {{
-                    authUser.name
-                    }}
+                    {{ authUser.name }}
                 </span>
             </h4>
         </div>
@@ -17,16 +15,12 @@
             <h6>সর্বশেষ নিবন্ধিত ব্যবহারকারী</h6>
             <div v-if="users.length > 0">
                 <div v-for="(user, index) in users" :key="index" class="p-1 mb-1">
-                    <router-link
-                        :to="`/profile/${user.username}`"
-                        class="text-decoration-none text-dark"
-                    >
+                    <router-link :to="`/profile/${user.username}`" class="text-decoration-none text-dark">
                         <div class="d-flex align-items-center">
                             <img
                                 :src="`https://ui-avatars.com/api/?background=random&name=${user.name}`"
                                 class="img-circle user_image"
-                                alt="Profile Image"
-                            />
+                                alt="Profile Image" />
                             <div class="ms-3">
                                 <p class="m-0">{{ user.name }}</p>
                                 <p class="m-0">{{ user.user_created_at }}</p>
@@ -47,9 +41,9 @@
 </template>
 
 <script>
-    import SocialLogin from "@/components/SocialLogin.vue";
+    import SocialLogin from '@/components/SocialLogin.vue';
     export default {
-        name: "RightSideBar",
+        name: 'RightSideBar',
         components: {
             SocialLogin,
         },
@@ -63,7 +57,7 @@
         },
 
         mounted() {
-            console.log("Users", this.users);
+            console.log('Users', this.users);
         },
     };
 </script>
@@ -74,7 +68,7 @@
         background: #fef3c7;
         position: relative;
         &::after {
-            content: "";
+            content: '';
             width: 10px;
             height: 10px;
             background: green;

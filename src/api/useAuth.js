@@ -1,4 +1,4 @@
-import useAxios from "@/plugins/useAxios";
+import axios from "@/plugins/axios";
 
-export const currentUser = () => useAxios.get("/auth/current-user");
-export const logout = () => useAxios.get("/auth/logout");
+export const currentUser = () => axios.get("/auth/current-user");
+export const logout = () => axios.get("/auth/logout");

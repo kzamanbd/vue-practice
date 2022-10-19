@@ -8,37 +8,25 @@
 
                         <form @submit.prevent="login">
                             <div class="input-group mb-3">
-                                <input
-                                    id="email"
-                                    type="email"
-                                    class="form-control"
-                                    v-model="username"
-                                    placeholder="Email Address"
-                                    required
-                                />
+                                <input id="email" v-model="username" type="email" class="form-control" placeholder="Email Address" required />
                             </div>
 
                             <div class="input-group mb-3">
                                 <input
                                     id="password"
+                                    v-model="password"
                                     type="password"
                                     class="form-control"
-                                    v-model="password"
                                     placeholder="Password"
                                     autocomplete="current-password"
-                                    required
-                                />
+                                    required />
                             </div>
                             <div class="row">
                                 <!-- /.col -->
                                 <div class="col-sm-12">
                                     <button type="submit" class="btn btn-success btn-block">
                                         <span>Sign In</span>
-                                        <div
-                                            class="spinner-border spinner-border-sm ms-3"
-                                            role="status"
-                                            v-if="isLoading"
-                                        >
+                                        <div v-if="isLoading" class="spinner-border spinner-border-sm ms-3" role="status">
                                             <span class="visually-hidden">Loading...</span>
                                         </div>
                                     </button>
@@ -58,8 +46,8 @@
     export default {
         data() {
             return {
-                username: "zaman7u@gmail.com",
-                password: "123456",
+                username: 'zaman7u@gmail.com',
+                password: '123456',
                 isLoading: false,
             };
         },
@@ -67,19 +55,19 @@
             login() {
                 this.isLoading = true;
                 this.$axios
-                    .post("auth/login", {
+                    .post('auth/login', {
                         email: this.username,
                         password: this.password,
-                        device_name: "Insomnia",
+                        device_name: 'Insomnia',
                     })
-                    .then((response) => {
-                        this.$store.commit("token", response.data.token);
-                        localStorage.setItem("token", response.data.token);
-                        this.$store.dispatch("user");
-                        this.$router.push({ name: "home" });
+                    .then(response => {
+                        this.$store.commit('token', response.data.token);
+                        localStorage.setItem('token', response.data.token);
+                        this.$store.dispatch('user');
+                        this.$router.push({ name: 'home' });
                         this.isLoading = false;
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         this.isLoading = false;
                         console.log(error);
                     });

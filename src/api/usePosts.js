@@ -1,3 +1,3 @@
-import useAxios from "@/plugins/useAxios";
+import axios from "@/plugins/axios";
 
-export const getAllPosts = () => useAxios.get("/posts");
+export const getAllPosts = () => axios.get("/posts");

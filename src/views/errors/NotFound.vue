@@ -3,11 +3,11 @@
 </template>
 
 <script>
-export default {
-    mounted() {
-        console.log("logged out");
-    },
-};
+    export default {
+        mounted() {
+            console.log('logged out');
+        },
+    };
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,4 +1,4 @@
-import axios from "@/plugins/useAxios";
+import axios from "@/plugins/axios";
 
 // State object
 const state = {

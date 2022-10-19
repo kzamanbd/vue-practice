@@ -44,16 +44,16 @@
 </template>
 
 <script>
-    import VueCropper from "vue-cropperjs";
-    import "cropperjs/dist/cropper.css";
+    import VueCropper from 'vue-cropperjs';
+    import 'cropperjs/dist/cropper.css';
     export default {
         components: {
             VueCropper,
         },
         data() {
             return {
-                imgSrc: "/assets/images/default.jpg",
-                cropImg: "",
+                imgSrc: '/assets/images/default.jpg',
+                cropImg: '',
             };
         },
         methods: {
@@ -69,21 +69,21 @@
                         width: 1000,
                         height: 1000,
                     })
-                    .toDataURL("image/jpeg", 0.4);
+                    .toDataURL('image/jpeg', 0.4);
             },
             flipX() {
                 const dom = this.$refs.flipX;
-                let scale = dom.getAttribute("data-scale");
+                let scale = dom.getAttribute('data-scale');
                 scale = scale ? -scale : -1;
                 this.$refs.cropper.scaleX(scale);
-                dom.setAttribute("data-scale", scale);
+                dom.setAttribute('data-scale', scale);
             },
             flipY() {
                 const dom = this.$refs.flipY;
-                let scale = dom.getAttribute("data-scale");
+                let scale = dom.getAttribute('data-scale');
                 scale = scale ? -scale : -1;
                 this.$refs.cropper.scaleY(scale);
-                dom.setAttribute("data-scale", scale);
+                dom.setAttribute('data-scale', scale);
             },
             move(offsetX, offsetY) {
                 this.$refs.cropper.move(offsetX, offsetY);
@@ -97,15 +97,15 @@
             setImage(e) {
                 const file = e.target.files[0];
 
-                if (file.type.indexOf("image/") === -1) {
-                    alert("Please select an image file");
+                if (file.type.indexOf('image/') === -1) {
+                    alert('Please select an image file');
                     return;
                 }
 
-                if (typeof FileReader === "function") {
+                if (typeof FileReader === 'function') {
                     const reader = new FileReader();
 
-                    reader.onload = (event) => {
+                    reader.onload = event => {
                         this.imgSrc = event.target.result;
                         // rebuild cropper js with the updated source
                         this.$refs.cropper.replace(event.target.result);
@@ -113,7 +113,7 @@
 
                     reader.readAsDataURL(file);
                 } else {
-                    alert("Sorry, FileReader API not supported");
+                    alert('Sorry, FileReader API not supported');
                 }
             },
             showFileChooser() {
@@ -123,20 +123,20 @@
                 this.$refs.cropper.relativeZoom(percent);
             },
             saveImage() {
-                if (this.cropImg === "") {
-                    alert("Please crop this image, then save");
+                if (this.cropImg === '') {
+                    alert('Please crop this image, then save');
                 } else {
                     this.$axios
-                        .post("v1/upload-image-by-croperjs", {
+                        .post('v1/upload-image-by-croperjs', {
                             image: this.cropImg,
                         })
-                        .then((response) => {
+                        .then(response => {
                             if (response.status === 200) {
-                                alert("Image successfully upload");
+                                alert('Image successfully upload');
                             }
                             console.log(response);
                         })
-                        .catch((error) => {
+                        .catch(error => {
                             console.log(error);
                         });
                 }
@@ -147,7 +147,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    input[type="file"] {
+    input[type='file'] {
         display: none;
     }
 
