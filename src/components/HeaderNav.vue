@@ -35,7 +35,10 @@
                         <div id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item nav__item__rounded" title="Home">
-                                    <router-link to="/" class="nav-link d-flex align-items-center justify-content-center" aria-current="page">
+                                    <router-link
+                                        to="/"
+                                        class="nav-link d-flex align-items-center justify-content-center"
+                                        aria-current="page">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="16"
@@ -54,7 +57,10 @@
                                 </li>
 
                                 <li class="nav-item nav__item__rounded" title="Chat">
-                                    <router-link to="/chat" class="nav-link d-flex align-items-center justify-content-center" aria-current="page">
+                                    <router-link
+                                        to="/chat"
+                                        class="nav-link d-flex align-items-center justify-content-center"
+                                        aria-current="page">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="16"
@@ -125,9 +131,13 @@
                                             aria-expanded="false">
                                             <span>{{ authUser.name }}</span>
                                         </a>
-                                        <ul class="dropdown-menu user_dropdown shadow py-0" aria-labelledby="dropdownMenuButton1">
+                                        <ul
+                                            class="dropdown-menu user_dropdown shadow py-0"
+                                            aria-labelledby="dropdownMenuButton1">
                                             <li>
-                                                <router-link class="dropdown-item d-flex align-items-center" to="/profile">
+                                                <router-link
+                                                    class="dropdown-item d-flex align-items-center"
+                                                    to="/profile">
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         width="16"
@@ -193,8 +203,8 @@
                                                 </a>
                                             </li>
 
-                                            <li>
-                                                <a class="dropdown-item d-flex align-items-center" href="#" @click.prevent="logout">
+                                            <li @click.prevent="logout">
+                                                <a class="dropdown-item d-flex align-items-center" href="#">
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         width="16"
@@ -217,7 +227,9 @@
                                 </li>
 
                                 <li v-else class="nav-item">
-                                    <router-link class="nav-link d-flex align-items-center justify-content-center pe-0" to="/login">
+                                    <router-link
+                                        class="nav-link d-flex align-items-center justify-content-center pe-0"
+                                        to="/login">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="16"
@@ -225,7 +237,8 @@
                                             fill="currentColor"
                                             class="bi bi-person-plus-fill"
                                             viewBox="0 0 16 16">
-                                            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                            <path
+                                                d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                             <path
                                                 fill-rule="evenodd"
                                                 d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
