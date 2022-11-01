@@ -55,10 +55,6 @@
                 return this.$store.getters.user;
             },
         },
-
-        mounted() {
-            console.log('Users', this.users);
-        },
     };
 </script>
 <style lang="scss" scoped>

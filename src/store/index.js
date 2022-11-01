@@ -1,10 +1,5 @@
 import { createStore } from "vuex";
-
-import { currentUser, logout } from "@/api/useAuth";
-import { InitApp } from "@/api/useApp";
-
-// ? import store module
-import siteContent from "./modules/siteContent";
+import $axios from "@/plugins/axios";
 
 // ? init vuex store
 export default createStore({
@@ -32,40 +27,39 @@ export default createStore({
     },
 
     actions: {
-        user(context) {
-            if (context.getters.loggedIn) {
-                currentUser()
-                    .then((response) => {
-                        localStorage.setItem("user", response.data.user);
-                        context.commit("user", response.data.user);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
+        async user({ commit, getters }) {
+            if (getters.loggedIn) {
+                try {
+                    const response = await $axios.get("/auth/current-user");
+                    localStorage.setItem("user", response.data.user);
+                    commit("user", response.data.user);
+                } catch (error) {
+                    console.log(error);
+                }
             }
         },
-        async serverInit(context) {
+        async serverInit({ commit }) {
             try {
-                const response = await InitApp();
-                context.commit("setTags", response.data.tags);
-                context.commit("setUsers", response.data.users);
-                console.log("Server Init", response.data);
+                console.log("serverInit");
+                const response = await $axios.get("/init-app");
+                console.log(response);
+                commit("setTags", response.data.tags);
+                commit("setUsers", response.data.users);
             } catch (err) {
                 console.log(err.response);
             }
         },
 
-        logout(context) {
+        async logout(context) {
             if (context.getters.loggedIn) {
-                logout()
-                    .then(() => {
-                        localStorage.removeItem("token");
-                        localStorage.removeItem("user");
-                        console.log(context);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
+                try {
+                    await $axios.post("/auth/logout");
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("user");
+                    console.log(context);
+                } catch (error) {
+                    console.log(error);
+                }
             }
         },
     },
@@ -84,8 +78,5 @@ export default createStore({
         setUsers(state, data) {
             state.users = data;
         },
-    },
-    modules: {
-        siteContent,
     },
 });

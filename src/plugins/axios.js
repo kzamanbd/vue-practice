@@ -1,3 +1,9 @@
+/*
+ * @Author: Kamruzzaman 
+ * @Date: 2022-11-02 00:19:45 
+ * @Last Modified by:   Kamruzzaman 
+ * @Last Modified time: 2022-11-02 00:19:45 
+ */
 // plugins/axios.js
 import axios from "axios";
 const BASE_URL = "https://api.kzaman.me/api";
@@ -16,7 +22,7 @@ httpRequest.interceptors.request.use(
             ? localStorage.getItem("token")
             : false;
         if (token) {
-            config.headers.common["Authorization"] = "Bearer " + token;
+            config.headers.common["Authorization"] = `Bearer ${token}`;
         }
         return config;
     },
@@ -29,32 +35,21 @@ httpRequest.interceptors.response.use(
     (response) => {
         if (response.status === 200 || response.status === 201) {
             return Promise.resolve(response);
-        } else {
-            return Promise.reject(response);
         }
+        return Promise.reject(response);
     },
     (error) => {
-        switch (error?.response?.status) {
-            case 400:
-                alert("Bad request");
-                break;
-            case 401:
-                alert("Unauthorized request");
-                break;
-            case 403:
-                alert("Access forbidden");
-                break;
-            case 404:
-                alert("URL not exists");
-                break;
-            case 500:
-                alert("Internal server error");
-                break;
-            case 502:
-                setTimeout(() => {
-                    alert("Bad gateway");
-                }, 1000);
-        }
+        const errorCode = {
+            400: 'Bad Request',
+            401: 'Unauthorized',
+            403: 'Access Forbidden',
+            404: 'URL Not Found',
+            405: 'Method Not Allowed',
+            500: 'Internal Server Error',
+            502: 'Bad Gateway',
+
+        };
+        alert(errorCode[error?.response?.status]);
         return Promise.reject(error.response);
     }
 );

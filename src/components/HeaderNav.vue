@@ -263,9 +263,8 @@
             },
         },
         methods: {
-            async logout() {
-                await this.$store.dispatch('logout');
-                await this.$store.dispatch('user');
+            logout() {
+                this.$store.dispatch('logout');
             },
         },
     };

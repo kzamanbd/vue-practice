@@ -8,7 +8,13 @@
 
                         <form @submit.prevent="login">
                             <div class="input-group mb-3">
-                                <input id="email" v-model="username" type="email" class="form-control" placeholder="Email Address" required />
+                                <input
+                                    id="email"
+                                    v-model="username"
+                                    type="email"
+                                    class="form-control"
+                                    placeholder="Email Address"
+                                    required />
                             </div>
 
                             <div class="input-group mb-3">
@@ -26,7 +32,10 @@
                                 <div class="col-sm-12">
                                     <button type="submit" class="btn btn-success btn-block">
                                         <span>Sign In</span>
-                                        <div v-if="isLoading" class="spinner-border spinner-border-sm ms-3" role="status">
+                                        <div
+                                            v-if="isLoading"
+                                            class="spinner-border spinner-border-sm ms-3"
+                                            role="status">
                                             <span class="visually-hidden">Loading...</span>
                                         </div>
                                     </button>
@@ -52,25 +61,23 @@
             };
         },
         methods: {
-            login() {
+            async login() {
                 this.isLoading = true;
-                this.$axios
-                    .post('auth/login', {
+                try {
+                    const response = await this.$axios.post('auth/login', {
                         email: this.username,
                         password: this.password,
                         device_name: 'Insomnia',
-                    })
-                    .then(response => {
-                        this.$store.commit('token', response.data.token);
-                        localStorage.setItem('token', response.data.token);
-                        this.$store.dispatch('user');
-                        this.$router.push({ name: 'home' });
-                        this.isLoading = false;
-                    })
-                    .catch(error => {
-                        this.isLoading = false;
-                        console.log(error);
                     });
+                    this.$store.commit('token', response.data.token);
+                    localStorage.setItem('token', response.data.token);
+                    this.$store.dispatch('user');
+                    this.$router.push('/');
+                    this.isLoading = false;
+                } catch (error) {
+                    this.isLoading = false;
+                    console.log(error);
+                }
             },
         },
     };

@@ -5,19 +5,19 @@ const routes = [
     {
         path: "/login",
         name: "Login",
-        component: () => import("@/views/UserLogin.vue"),
+        component: () => import("@/pages/UserLogin.vue"),
     },
 
     {
         path: "/",
         name: "Home",
-        component: () => import("@/views/HomePage.vue"),
+        component: () => import("@/pages/HomePage.vue"),
     },
 
     {
         path: "/profile",
         name: "Profile",
-        component: () => import("@/views/UserProfile.vue"),
+        component: () => import("@/pages/UserProfile.vue"),
         meta: {
             requiresAuth: true,
         },
@@ -26,7 +26,7 @@ const routes = [
     {
         path: "/image-crop",
         name: "Crop Image",
-        component: () => import("@/views/ImageCrop.vue"),
+        component: () => import("@/pages/ImageCrop.vue"),
         meta: {
             requiresAuth: false,
         },
@@ -35,7 +35,7 @@ const routes = [
     {
         path: "/select-checkbox",
         name: "Select Checkbox",
-        component: () => import("@/views/SelectCheckbox.vue"),
+        component: () => import("@/pages/SelectCheckbox.vue"),
         meta: {
             requiresAuth: false,
         },
@@ -44,7 +44,7 @@ const routes = [
     {
         path: "/:pathMatch(.*)*",
         name: "Not found",
-        component: () => import("@/views/errors/NotFound.vue"),
+        component: () => import("@/pages/NotFound.vue"),
     },
 ];
 

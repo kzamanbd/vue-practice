@@ -90,7 +90,12 @@
                             </div>
                             <div class="card-body p-0">
                                 <router-link :to="`/${post.slug}`">
-                                    <img v-if="post.image" :src="post.image" class="card-img-top img-rounded" alt="Blog Image" loading="lazy" />
+                                    <img
+                                        v-if="post.image"
+                                        :src="post.image"
+                                        class="card-img-top img-rounded"
+                                        alt="Blog Image"
+                                        loading="lazy" />
 
                                     <h4 class="title my-3">{{ post.title }}</h4>
                                 </router-link>
@@ -128,7 +133,7 @@
 <script>
     import LeftSideBar from '@/components/HomePage/LeftSideBar.vue';
     import RightSideBar from '@/components/HomePage/RightSideBar.vue';
-    import { getAllPosts } from '@/api/usePosts';
+
     export default {
         name: 'HomePage',
         components: {
@@ -148,7 +153,7 @@
             },
         },
         async created() {
-            const response = await getAllPosts();
+            const response = await this.$axios.get('/posts');
             this.posts = await response.data.posts.data;
         },
         mounted() {
@@ -159,11 +164,12 @@
         },
         methods: {
             getNextPosts() {
-                let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+                let bottomOfWindow =
+                    document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
                 if (bottomOfWindow) {
                     this.isLoading = true;
                     let page = this.next_page++;
-                    this.$axios.get('posts?page=' + page).then(response => {
+                    this.$axios.get(`posts?page=${page}`).then(response => {
                         this.posts.push(...response.data.posts.data);
                         this.isLoading = false;
                     });
@@ -173,7 +179,7 @@
             loadMore() {
                 this.isLoading = true;
                 let page = this.next_page++;
-                this.$axios.get('posts?page=' + page).then(response => {
+                this.$axios.get(`posts?page=${page}`).then(response => {
                     this.posts.push(...response.data.posts.data);
                     this.isLoading = false;
                 });
