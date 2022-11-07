@@ -179,7 +179,7 @@
 <script>
     import flatpickr from 'flatpickr';
     // Init component
-    import FlatPickr from '@/plugins/Flatpickr';
+    import FlatPickr from '@/plugins/flatpickr';
     // Need to add base css for flatpickr
     import 'flatpickr/dist/flatpickr.min.css';
     // l10n is optional
