@@ -40,9 +40,7 @@ export default createStore({
         },
         async serverInit({ commit }) {
             try {
-                console.log("serverInit");
                 const response = await $axios.get("/init-app");
-                console.log(response);
                 commit("setTags", response.data.tags);
                 commit("setUsers", response.data.users);
             } catch (err) {
@@ -56,7 +54,6 @@ export default createStore({
                     await $axios.post("/auth/logout");
                     localStorage.removeItem("token");
                     localStorage.removeItem("user");
-                    console.log(context);
                 } catch (error) {
                     console.log(error);
                 }

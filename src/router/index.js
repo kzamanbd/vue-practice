@@ -6,12 +6,20 @@ const routes = [
         path: "/login",
         name: "Login",
         component: () => import("@/pages/UserLogin.vue"),
+        meta: {
+            requiresAuth: false,
+            layout: "blank",
+        },
     },
 
     {
         path: "/",
         name: "Home",
         component: () => import("@/pages/HomePage.vue"),
+        meta: {
+            requiresAuth: false,
+            layout: "default",
+        },
     },
 
     {
@@ -20,6 +28,7 @@ const routes = [
         component: () => import("@/pages/UserProfile.vue"),
         meta: {
             requiresAuth: true,
+            layout: "default",
         },
     },
 
@@ -29,6 +38,7 @@ const routes = [
         component: () => import("@/pages/ImageCrop.vue"),
         meta: {
             requiresAuth: false,
+            layout: "blank",
         },
     },
 
@@ -38,6 +48,17 @@ const routes = [
         component: () => import("@/pages/SelectCheckbox.vue"),
         meta: {
             requiresAuth: false,
+            layout: "blank",
+        },
+    },
+
+    {
+        path: "/flatpickr",
+        name: "FlatPicker",
+        component: () => import("@/pages/FlatPicker.vue"),
+        meta: {
+            requiresAuth: false,
+            layout: "blank",
         },
     },
 

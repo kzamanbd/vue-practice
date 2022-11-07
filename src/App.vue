@@ -1,32 +1,27 @@
 <template>
-    <div>
-        <Navbar />
+    <component :is="resolveLayout">
         <router-view />
-    </div>
+    </component>
 </template>
 
 <script>
-    import Navbar from '@/components/HeaderNav.vue';
+    import LayoutBlank from '@/layouts/LayoutBlank.vue';
+    import LayoutContent from '@/layouts/LayoutContent.vue';
     export default {
         name: 'App',
         components: {
-            Navbar,
+            LayoutBlank,
+            LayoutContent,
         },
-        created() {
-            this.$store.dispatch('user');
-            this.$store.dispatch('serverInit');
+        computed: {
+            resolveLayout() {
+                console.log(this.$route.meta.layout);
+                if (this.$route.meta.layout === 'blank') {
+                    return 'layout-blank';
+                } else {
+                    return 'layout-content';
+                }
+            },
         },
     };
 </script>
-
-<style>
-    a.router-link-exact-active {
-        color: #42b983;
-    }
-    @media screen and (min-width: 992px) {
-        .container-fluid {
-            padding-left: 50px !important;
-            padding-right: 50px !important;
-        }
-    }
-</style>
