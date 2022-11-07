@@ -4,24 +4,18 @@
     </component>
 </template>
 
-<script>
+<script setup>
+    import { computed } from 'vue';
     import LayoutBlank from '@/layouts/LayoutBlank.vue';
     import LayoutContent from '@/layouts/LayoutContent.vue';
-    export default {
-        name: 'App',
-        components: {
-            LayoutBlank,
-            LayoutContent,
-        },
-        computed: {
-            resolveLayout() {
-                console.log(this.$route.meta.layout);
-                if (this.$route.meta.layout === 'blank') {
-                    return 'layout-blank';
-                } else {
-                    return 'layout-content';
-                }
-            },
-        },
-    };
+    import { useRoute } from 'vue-router';
+
+    const route = useRoute();
+    const resolveLayout = computed(() => {
+        if (route.meta.layout === 'blank') {
+            return LayoutBlank;
+        } else {
+            return LayoutContent;
+        }
+    });
 </script>
