@@ -12,10 +12,10 @@
 
     const route = useRoute();
     const resolveLayout = computed(() => {
-        if (route.meta.layout === 'blank') {
-            return LayoutBlank;
-        } else {
+        if (route.meta.layout === 'default') {
             return LayoutContent;
+        } else {
+            return LayoutBlank;
         }
     });
 </script>

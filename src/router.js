@@ -6,6 +6,16 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
+            path: "/",
+            name: "Vue App",
+            component: () => import("@/pages/IndexPage.vue"),
+            meta: {
+                requiresAuth: false,
+                layout: "blank",
+            },
+        },
+
+        {
             path: "/login",
             name: "Login",
             component: () => import("@/pages/UserLogin.vue"),
@@ -16,9 +26,9 @@ const router = createRouter({
         },
 
         {
-            path: "/",
-            name: "Home",
-            component: () => import("@/pages/HomePage.vue"),
+            path: "/blog",
+            name: "Blog",
+            component: () => import("@/pages/BlogPage.vue"),
             meta: {
                 requiresAuth: false,
                 layout: "default",
