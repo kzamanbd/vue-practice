@@ -1,6 +1,6 @@
 // vue global components
 
-import TopHeader from '@/components/TopHeader';
+import TopHeader from '@/components/TopHeader.vue';
 // axios default configuration
 import axios from "./plugins/axios";
 export default {
