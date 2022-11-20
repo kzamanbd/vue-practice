@@ -1,13 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import store from '@/store';
 
+import HomeView from '@/views/HomeView.vue';
+
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
             path: '/',
             name: 'Vue App',
-            component: () => import('@/views/IndexPage.vue'),
+            component: HomeView,
             meta: {
                 requiresAuth: false,
                 layout: 'blank',

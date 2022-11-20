@@ -131,8 +131,8 @@
 </template>
 
 <script>
-    import LeftSideBar from '@/components/HomePage/LeftSideBar.vue';
-    import RightSideBar from '@/components/HomePage/RightSideBar.vue';
+    import LeftSideBar from '@/components/LeftSideBar.vue';
+    import RightSideBar from '@/components/RightSideBar.vue';
 
     export default {
         name: 'HomePage',
