@@ -8,7 +8,7 @@ const router = createRouter({
         {
             path: "/",
             name: "Vue App",
-            component: () => import("@/pages/IndexPage.vue"),
+            component: () => import("@/views/IndexPage.vue"),
             meta: {
                 requiresAuth: false,
                 layout: "blank",
@@ -18,7 +18,7 @@ const router = createRouter({
         {
             path: "/login",
             name: "Login",
-            component: () => import("@/pages/UserLogin.vue"),
+            component: () => import("@/views/UserLogin.vue"),
             meta: {
                 requiresAuth: false,
                 layout: "blank",
@@ -28,7 +28,7 @@ const router = createRouter({
         {
             path: "/blog",
             name: "Blog",
-            component: () => import("@/pages/BlogPage.vue"),
+            component: () => import("@/views/BlogPage.vue"),
             meta: {
                 requiresAuth: false,
                 layout: "default",
@@ -38,7 +38,7 @@ const router = createRouter({
         {
             path: "/profile",
             name: "Profile",
-            component: () => import("@/pages/UserProfile.vue"),
+            component: () => import("@/views/UserProfile.vue"),
             meta: {
                 requiresAuth: true,
                 layout: "default",
@@ -48,7 +48,7 @@ const router = createRouter({
         {
             path: "/image-crop",
             name: "Crop Image",
-            component: () => import("@/pages/ImageCrop.vue"),
+            component: () => import("@/views/ImageCrop.vue"),
             meta: {
                 requiresAuth: false,
                 layout: "blank",
@@ -58,7 +58,7 @@ const router = createRouter({
         {
             path: "/select-checkbox",
             name: "Select Checkbox",
-            component: () => import("@/pages/SelectCheckbox.vue"),
+            component: () => import("@/views/SelectCheckbox.vue"),
             meta: {
                 requiresAuth: false,
                 layout: "blank",
@@ -68,7 +68,7 @@ const router = createRouter({
         {
             path: "/flatpickr",
             name: "FlatPicker",
-            component: () => import("@/pages/FlatPicker.vue"),
+            component: () => import("@/views/FlatPicker.vue"),
             meta: {
                 requiresAuth: false,
                 layout: "blank",
@@ -78,7 +78,7 @@ const router = createRouter({
         {
             path: "/:pathMatch(.*)*",
             name: "Not found",
-            component: () => import("@/pages/NotFound.vue"),
+            component: () => import("@/views/NotFound.vue"),
         },
     ],
 });
