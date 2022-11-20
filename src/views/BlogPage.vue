@@ -66,7 +66,7 @@
                                 <a class="avatar d-flex align-items-center" href="#">
                                     <img
                                         :src="`https://ui-avatars.com/api/?background=random&name=${post.user.name}`"
-                                        class="img-circle"
+                                        class="img-circle rounded-circle"
                                         alt="Profile Image" />
                                     <span class="ms-3">{{ post.user.name }}</span>
                                 </a>

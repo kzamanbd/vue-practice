@@ -4,10 +4,10 @@ import $axios from '@/plugins/axios';
 // ? init vuex store
 export default createStore({
     state: {
-        token: localStorage.getItem('token') || null,
-        user: localStorage.getItem('user') || null,
         tags: [],
         users: [],
+        token: localStorage.getItem('token') || null,
+        user: localStorage.getItem('user') || null,
     },
 
     getters: {
@@ -32,7 +32,7 @@ export default createStore({
                 try {
                     const response = await $axios.get('/auth/current-user');
                     localStorage.setItem('user', response.data.user);
-                    commit('user', response.data.user);
+                    commit('SET_USER', response.data.user);
                 } catch (error) {
                     console.log(error);
                 }
@@ -41,8 +41,8 @@ export default createStore({
         async serverInit({ commit }) {
             try {
                 const response = await $axios.get('/init-app');
-                commit('setTags', response.data.tags);
-                commit('setUsers', response.data.users);
+                commit('SET_TAGS', response.data.tags);
+                commit('SET_USERS', response.data.users);
             } catch (err) {
                 console.log(err.response);
             }
@@ -62,17 +62,17 @@ export default createStore({
     },
 
     mutations: {
-        token(state, data) {
+        SET_TOKEN(state, data) {
             return (state.token = data);
         },
-        user(state, data) {
+        SET_USER(state, data) {
             return (state.user = data);
         },
-        setTags(state, data) {
+        SET_TAGS(state, data) {
             state.tags = data;
         },
 
-        setUsers(state, data) {
+        SET_USERS(state, data) {
             state.users = data;
         },
     },

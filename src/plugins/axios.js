@@ -1,8 +1,8 @@
 /*
  * @Author: Kamruzzaman
  * @Date: 2022-11-02 00:19:45
- * @Last Modified by:   Kamruzzaman
- * @Last Modified time: 2022-11-02 00:19:45
+ * @Last Modified by: Kamruzzaman
+ * @Last Modified time: 2022-11-20 20:22:20
  */
 // plugins/axios.js
 import axios from 'axios';
@@ -46,8 +46,7 @@ httpRequest.interceptors.response.use(
             500: 'Internal Server Error',
             502: 'Bad Gateway',
         };
-        alert(errorCode[error?.response?.status]);
-        return Promise.reject(error.response);
+        throw new Error(errorCode[error?.response?.status]);
     },
 );
 
