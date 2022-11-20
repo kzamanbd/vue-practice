@@ -2,27 +2,20 @@ import flatpickr from 'flatpickr';
 import { defineComponent, h } from 'vue';
 
 // utils
-const camelToKebab = (string) => {
+const camelToKebab = string => {
     return string.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 };
 
-const arrayIfy = (obj) => {
+const arrayIfy = obj => {
     return obj instanceof Array ? obj : [obj];
 };
 
-const nullify = (value) => {
-    return (value && value.length) ? value : null;
+const nullify = value => {
+    return value && value.length ? value : null;
 };
 
 // Events to emit, copied from flatpickr source
-const includedEvents = [
-    'onChange',
-    'onClose',
-    'onDestroy',
-    'onMonthChange',
-    'onOpen',
-    'onYearChange',
-];
+const includedEvents = ['onChange', 'onClose', 'onDestroy', 'onMonthChange', 'onOpen', 'onYearChange'];
 
 // Let's not emit these events by default
 const excludedEvents = [
@@ -41,7 +34,7 @@ const configCallbacks = ['locale', 'showMonths'];
 
 export default defineComponent({
     name: 'FlatPickr',
-    compatConfig: { MODE: 3, },
+    compatConfig: { MODE: 3 },
 
     props: {
         modelValue: {
@@ -56,7 +49,7 @@ export default defineComponent({
                     value instanceof Array ||
                     typeof value === 'number'
                 );
-            }
+            },
         },
         // https://flatpickr.js.org/options/
         config: {
@@ -64,21 +57,18 @@ export default defineComponent({
             default: () => ({
                 defaultDate: null,
                 wrap: false,
-            })
+            }),
         },
         events: {
             type: Array,
-            default: () => includedEvents
+            default: () => includedEvents,
         },
         disabled: {
             type: Boolean,
-            default: false
+            default: false,
         },
     },
-    emits: [
-        'blur',
-        'update:modelValue',
-    ].concat(allEvents.map(camelToKebab)),
+    emits: ['blur', 'update:modelValue'].concat(allEvents.map(camelToKebab)),
 
     watch: {
         /**
@@ -94,18 +84,18 @@ export default defineComponent({
                 // previously registered hooks will stop working
                 // Notice: we are looping through all events
                 // This also means that new callbacks can not be passed once component has been initialized
-                allEvents.forEach((hook) => {
+                allEvents.forEach(hook => {
                     delete safeConfig[hook];
                 });
                 this.fp.set(safeConfig);
 
                 // Workaround: Allow to change locale dynamically
-                configCallbacks.forEach((name) => {
+                configCallbacks.forEach(name => {
                     if (typeof safeConfig[name] !== 'undefined') {
                         this.fp.set(name, safeConfig[name]);
                     }
                 });
-            }
+            },
         },
 
         /**
@@ -118,7 +108,7 @@ export default defineComponent({
             this.fp &&
                 // Notify flatpickr instance that there is a change in value
                 this.fp.setDate(newValue, true);
-        }
+        },
     },
 
     mounted() {
@@ -135,7 +125,7 @@ export default defineComponent({
         // Immediate watch will fail before fp is set,
         // so we need to start watching after mount
         this.$watch('disabled', this.watchDisabled, {
-            immediate: true
+            immediate: true,
         });
     },
 
@@ -153,7 +143,7 @@ export default defineComponent({
             // Don't mutate original object on parent component
             let safeConfig = { ...this.config };
 
-            this.events.forEach((hook) => {
+            this.events.forEach(hook => {
                 // Respect global callbacks registered via setDefault() method
                 let globalCallbacks = flatpickr.defaultConfig[hook] || [];
 
@@ -163,10 +153,7 @@ export default defineComponent({
                 };
 
                 // Overwrite with merged array
-                safeConfig[hook] = arrayIfy(safeConfig[hook] || []).concat(
-                    globalCallbacks,
-                    localCallback
-                );
+                safeConfig[hook] = arrayIfy(safeConfig[hook] || []).concat(globalCallbacks, localCallback);
             });
 
             const onCloseCb = this.onClose.bind(this);
@@ -226,7 +213,7 @@ export default defineComponent({
             } else {
                 this.fpInput().removeAttribute('disabled');
             }
-        }
+        },
     },
 
     render() {
@@ -237,5 +224,5 @@ export default defineComponent({
             onInput: this.onInput,
         });
     },
-    fp: null
+    fp: null,
 });

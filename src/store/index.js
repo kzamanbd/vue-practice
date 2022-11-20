@@ -1,11 +1,11 @@
-import { createStore } from "vuex";
-import $axios from "@/plugins/axios";
+import { createStore } from 'vuex';
+import $axios from '@/plugins/axios';
 
 // ? init vuex store
 export default createStore({
     state: {
-        token: localStorage.getItem("token") || null,
-        user: localStorage.getItem("user") || null,
+        token: localStorage.getItem('token') || null,
+        user: localStorage.getItem('user') || null,
         tags: [],
         users: [],
     },
@@ -30,9 +30,9 @@ export default createStore({
         async user({ commit, getters }) {
             if (getters.loggedIn) {
                 try {
-                    const response = await $axios.get("/auth/current-user");
-                    localStorage.setItem("user", response.data.user);
-                    commit("user", response.data.user);
+                    const response = await $axios.get('/auth/current-user');
+                    localStorage.setItem('user', response.data.user);
+                    commit('user', response.data.user);
                 } catch (error) {
                     console.log(error);
                 }
@@ -40,9 +40,9 @@ export default createStore({
         },
         async serverInit({ commit }) {
             try {
-                const response = await $axios.get("/init-app");
-                commit("setTags", response.data.tags);
-                commit("setUsers", response.data.users);
+                const response = await $axios.get('/init-app');
+                commit('setTags', response.data.tags);
+                commit('setUsers', response.data.users);
             } catch (err) {
                 console.log(err.response);
             }
@@ -51,9 +51,9 @@ export default createStore({
         async logout(context) {
             if (context.getters.loggedIn) {
                 try {
-                    await $axios.post("/auth/logout");
-                    localStorage.removeItem("token");
-                    localStorage.removeItem("user");
+                    await $axios.post('/auth/logout');
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('user');
                 } catch (error) {
                     console.log(error);
                 }

@@ -22,14 +22,24 @@
                         <div class="content-middle media-upload">
                             <div class="row justify-content-center">
                                 <div class="col-lg-6">
-                                    <div class="alert alert-success mb-0 mt-4 border-0" role="alert">A simple success alert—check it out!</div>
+                                    <div class="alert alert-success mb-0 mt-4 border-0" role="alert">
+                                        A simple success alert—check it out!
+                                    </div>
                                     <form action="#">
                                         <div class="row gy-3">
                                             <!-- Upload button -->
                                             <div class="col-12">
-                                                <label for="file" class="form-label required"> Upload file from this computer </label>
-                                                <div class="upload-button d-flex align-items-center flex-column justify-content-center">
-                                                    <input id="file" type="file" name="#" class="form-control" required />
+                                                <label for="file" class="form-label required">
+                                                    Upload file from this computer
+                                                </label>
+                                                <div
+                                                    class="upload-button d-flex align-items-center flex-column justify-content-center">
+                                                    <input
+                                                        id="file"
+                                                        type="file"
+                                                        name="#"
+                                                        class="form-control"
+                                                        required />
                                                     <h5 id="file_name">Or drop file here</h5>
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
