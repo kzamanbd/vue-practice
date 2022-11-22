@@ -4,7 +4,7 @@
             <div class="card-body">
                 <h4>User</h4>
                 <div>
-                    <table class="table table-striped">
+                    <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th scope="col">
