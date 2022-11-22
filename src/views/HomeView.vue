@@ -15,6 +15,7 @@
                 <nav>
                     <RouterLink to="/blog">Blog</RouterLink>
                     <RouterLink to="/flatpickr">Date Time</RouterLink>
+                    <RouterLink to="/select-checkbox">Select Checkbox</RouterLink>
                 </nav>
             </div>
         </header>

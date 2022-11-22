@@ -1,26 +1,62 @@
 <template>
-    <div>
-        <div class="card">
-            <div class="card-body">
-                <h4>User</h4>
-                <div>
-                    <table class="table table-striped">
+    <div class="card">
+        <div class="card-body">
+            <h4>User</h4>
+            <div>
+                <table class="table table-striped">
+                    <thead>
                         <tr>
-                            <th><input v-model="allSelected" type="checkbox" @click="selectAll" />SL</th>
-                            <th>Name</th>
+                            <th scope="col">
+                                <div class="form-check" @click="selectAll">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        v-model="allSelected"
+                                        id="flexCheckDefault" />
+                                    <label class="form-check-label" for="flexCheckDefault">SL</label>
+                                </div>
+                            </th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Company</th>
                         </tr>
-                        <tr v-for="(user, index) in users" :key="user.id">
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item, index) in users" :key="item.id">
                             <td>
-                                <input v-model="userIds" type="checkbox" :value="user.id" @click="select" />
-                                {{ index + 1 }}
+                                <div class="form-check">
+                                    <input
+                                        :id="`flexCheckDefault${index}`"
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        @click="select(item)"
+                                        :checked="item.selected" />
+                                    <label class="form-check-label" :for="`flexCheckDefault${index}`">
+                                        {{ index + 1 }}
+                                    </label>
+                                </div>
                             </td>
-                            <td>{{ user.name }}</td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.username }}</td>
+                            <td>{{ item.email }}</td>
+                            <td>{{ item.phone }}</td>
+                            <td>{{ item.company?.name }}</td>
                         </tr>
-                    </table>
-                </div>
-
-                <span>Selected Ids: {{ userIds }}</span>
+                    </tbody>
+                </table>
             </div>
+
+            <span
+                >Selected Ids:
+                {{
+                    users
+                        .filter(item => item.selected)
+                        .map(item => item.name)
+                        .join(',')
+                }}</span
+            >
         </div>
     </div>
 </template>
@@ -30,33 +66,37 @@
         name: 'SelectCheckbox',
         data() {
             return {
-                users: [
-                    { id: 'Shad', name: 'Shad' },
-                    { id: 'Duane', name: 'Duane' },
-                    { id: 'Myah', name: 'Myah' },
-                    { id: 'Kamron', name: 'Kamron' },
-                    { id: 'Brendon', name: 'Brendon' },
-                ],
+                users: [],
                 allSelected: false,
-                userIds: [],
             };
+        },
+        async created() {
+            const response = await this.$axios.get('https://jsonplaceholder.typicode.com/users');
+            this.users = response.data.map(item => {
+                return {
+                    ...item,
+                    selected: false,
+                };
+            });
         },
         methods: {
             selectAll() {
-                this.userIds = [];
-                if (this.allSelected) {
-                    this.allSelected = false;
-                } else {
-                    this.users.forEach(user => {
-                        this.userIds.push(user.id.toString());
-                    });
-                }
+                this.allSelected = !this.allSelected;
+                this.users = this.users.map(item => {
+                    return {
+                        ...item,
+                        selected: this.allSelected,
+                    };
+                });
             },
-            select() {
-                this.allSelected = false;
+            select(user) {
+                user.selected = !user.selected;
+                if (this.users.filter(item => item.selected).length == this.users.length) {
+                    this.allSelected = true;
+                } else {
+                    this.allSelected = false;
+                }
             },
         },
     };
 </script>
-
-<style scoped></style>
