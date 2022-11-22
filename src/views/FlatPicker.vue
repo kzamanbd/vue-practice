@@ -8,6 +8,9 @@
                         GitHub
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/flatpickr/flatpickr" target="_blank"> FlatPickr </a>
+                </li>
             </ul>
         </nav>
 
