@@ -17,6 +17,9 @@
                     <RouterLink to="/flatpickr">Date Time</RouterLink>
                     <RouterLink to="/select-checkbox">Select Checkbox</RouterLink>
                 </nav>
+                <nav>
+                    <RouterLink to="/test-report">Test Report</RouterLink>
+                </nav>
             </div>
         </header>
         <main>

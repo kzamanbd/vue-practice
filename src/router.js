@@ -76,6 +76,15 @@ const router = createRouter({
                 layout: 'blank',
             },
         },
+        {
+            path: '/test-report',
+            name: 'TestReport',
+            component: () => import('@/views/TestReport/TestReport.vue'),
+            meta: {
+                requiresAuth: false,
+                layout: 'blank',
+            },
+        },
 
         {
             path: '/:pathMatch(.*)*',
