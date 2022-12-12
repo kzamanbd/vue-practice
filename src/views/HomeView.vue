@@ -12,13 +12,11 @@
             <div class="wrapper">
                 <HelloWorld msg="You did it!" />
 
-                <nav>
+                <nav class="py-0 mt-2">
                     <RouterLink to="/blog">Blog</RouterLink>
                     <RouterLink to="/flatpickr">Date Time</RouterLink>
                     <RouterLink to="/select-checkbox">Select Checkbox</RouterLink>
-                </nav>
-                <nav>
-                    <RouterLink to="/test-report">Test Report</RouterLink>
+                    <RouterLink to="/test-report" class="border-0">Test Report</RouterLink>
                 </nav>
             </div>
         </header>
@@ -43,7 +41,6 @@
         width: 100%;
         font-size: 12px;
         text-align: center;
-        margin-top: 2rem;
     }
 
     nav a.router-link-exact-active {
@@ -85,9 +82,6 @@
             text-align: left;
             margin-left: -1rem;
             font-size: 1rem;
-
-            padding: 1rem 0;
-            margin-top: 1rem;
         }
     }
 </style>
