@@ -2,7 +2,7 @@
  * @Author: Kamruzzaman
  * @Date: 2022-11-02 00:19:45
  * @Last Modified by: Kamruzzaman
- * @Last Modified time: 2022-11-22 23:20:48
+ * @Last Modified time: 2022-12-16 00:47:44
  */
 // plugins/axios.js
 import axios from 'axios';
@@ -11,7 +11,7 @@ const httpRequest = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL,
     headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        ContentType: 'application/json',
     },
 });
 
