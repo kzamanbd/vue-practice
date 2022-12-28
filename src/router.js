@@ -85,6 +85,15 @@ const router = createRouter({
                 layout: 'blank',
             },
         },
+        {
+            path: '/swiper-slider',
+            name: 'SwiperSlide',
+            component: () => import('@/views/SwiperSlide.vue'),
+            meta: {
+                requiresAuth: false,
+                layout: 'blank',
+            },
+        },
 
         {
             path: '/:pathMatch(.*)*',
