@@ -1,88 +1,47 @@
 <script setup>
+    import { ref } from 'vue';
     import HelloWorld from '@/components/HelloWorld.vue';
     import TheWelcome from '@/components/TheWelcome.vue';
-    import { RouterLink } from 'vue-router';
+    import ContextMenu from '@/components/ContextMenu/ContextMenu.vue';
+    import ContextMenuItem from '@/components/ContextMenu/ContextMenuItem.vue';
+
+    const menu = ref(null);
+    const closeMenu = () => {
+        menu.value.close();
+    };
 </script>
 
 <template>
-    <div id="homeView">
+    <div id="homeView" @contextmenu.prevent="$refs.menu.open($event, 'Payload')">
         <header>
             <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
             <div class="wrapper">
                 <HelloWorld msg="You did it!" />
-
-                <nav class="py-0 mt-2">
-                    <RouterLink to="/blog">Blog</RouterLink>
-                    <RouterLink to="/flatpickr">Date Time</RouterLink>
-                    <RouterLink to="/select-checkbox">Select Checkbox</RouterLink>
-                    <RouterLink to="/test-report" class="border-0">Test Report</RouterLink>
-                    <RouterLink to="/swiper-slider" class="border-0">Swiper Slider</RouterLink>
-                </nav>
+                <p>Right click to know more features</p>
             </div>
         </header>
         <main>
             <TheWelcome />
         </main>
+        <ContextMenu ref="menu">
+            <template v-slot="{ contextData }">
+                <ContextMenuItem @click="closeMenu"> <a href="/blog" target="_blank">Blog</a> </ContextMenuItem>
+                <ContextMenuItem @click="closeMenu">
+                    <a href="/flatpickr" target="_blank">Date Time</a>
+                </ContextMenuItem>
+                <ContextMenuItem @click="closeMenu">
+                    <a href="/select-checkbox" target="_blank">Select Checkbox</a>
+                </ContextMenuItem>
+                <ContextMenuItem @click="closeMenu">
+                    <a href="/test-report" class="border-0" target="_blank">Test Report</a>
+                </ContextMenuItem>
+                <ContextMenuItem @click="closeMenu">
+                    <a href="/swiper-slider" class="border-0" target="_blank">Swiper Slider</a>
+                </ContextMenuItem>
+                <ContextMenuItem @click="closeMenu"> Action 4 {{ contextData }} </ContextMenuItem>
+                <ContextMenuItem @click="closeMenu"> Cancel </ContextMenuItem>
+            </template>
+        </ContextMenu>
     </div>
 </template>
-
-<style scoped>
-    header {
-        line-height: 1.5;
-        max-height: 100vh;
-    }
-
-    .logo {
-        display: block;
-        margin: 0 auto 2rem;
-    }
-
-    nav {
-        width: 100%;
-        font-size: 12px;
-        text-align: center;
-    }
-
-    nav a.router-link-exact-active {
-        color: var(--color-text);
-    }
-
-    nav a.router-link-exact-active:hover {
-        background-color: transparent;
-    }
-
-    nav a {
-        display: inline-block;
-        padding: 0 1rem;
-        border-left: 1px solid var(--color-border);
-    }
-
-    nav a:first-of-type {
-        border: 0;
-    }
-
-    @media (min-width: 1024px) {
-        header {
-            display: flex;
-            place-items: center;
-            padding-right: calc(var(--section-gap) / 2);
-        }
-
-        .logo {
-            margin: 0 2rem 0 0;
-        }
-
-        header .wrapper {
-            display: flex;
-            place-items: flex-start;
-            flex-wrap: wrap;
-        }
-
-        nav {
-            text-align: left;
-            margin-left: -1rem;
-            font-size: 1rem;
-        }
-    }
-</style>
