@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router';
 import store from '@/store';
+import { createRouter, createWebHistory } from 'vue-router';
 
 import HomeView from '@/views/HomeView.vue';
 import NotFound from '@/views/NotFound.vue';
@@ -89,6 +89,15 @@ const router = createRouter({
             path: '/swiper-slider',
             name: 'SwiperSlide',
             component: () => import('@/views/SwiperSlide.vue'),
+            meta: {
+                requiresAuth: false,
+                layout: 'blank',
+            },
+        },
+        {
+            path: '/apex-chart',
+            name: 'ApexChart',
+            component: () => import('@/views/ApexChart.vue'),
             meta: {
                 requiresAuth: false,
                 layout: 'blank',

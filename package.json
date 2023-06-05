@@ -10,6 +10,7 @@
         "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
     },
     "dependencies": {
+        "apexcharts": "^3.40.0",
         "axios": "^0.21.4",
         "bootstrap": "^5.2.2",
         "bootstrap-vue": "^2.21.2",
@@ -20,6 +21,7 @@
         "vue-click-outside": "^1.1.0",
         "vue-cropperjs": "^4.2.0",
         "vue-router": "^4.0.3",
+        "vue3-apexcharts": "^1.4.1",
         "vuex": "^4.0.0"
     },
     "devDependencies": {

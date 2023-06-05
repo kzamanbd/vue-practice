@@ -1,9 +1,37 @@
 <script setup>
-    import { ref } from 'vue';
-    import HelloWorld from '@/components/HelloWorld.vue';
-    import TheWelcome from '@/components/TheWelcome.vue';
+    import menus from '@/assets/menus.json';
     import ContextMenu from '@/components/ContextMenu/ContextMenu.vue';
     import ContextMenuItem from '@/components/ContextMenu/ContextMenuItem.vue';
+    import HelloWorld from '@/components/HelloWorld.vue';
+    import TheWelcome from '@/components/TheWelcome.vue';
+    import { ref } from 'vue';
+
+    console.log(menus);
+
+    const filterMenus = menus.parents.map(m => {
+        const main = {
+            id: m.id,
+            feature_name: m.group_name,
+            description: m.description,
+            for: null,
+            icon: null,
+            group_id: null,
+            url: null,
+        };
+        return main;
+    });
+    console.log(
+        [...filterMenus, ...menus.children].map(item => {
+            return {
+                id: item.id,
+                name: item.feature_name,
+                description: item.description,
+                icon: item.icon,
+                parent_id: item.module_id || null,
+                url: item.url,
+            };
+        }),
+    );
 
     const menu = ref(null);
     const closeMenu = () => {
