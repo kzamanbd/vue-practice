@@ -59,6 +59,8 @@
                 <ContextMenuItem @click="$router.push('/select-checkbox')"> Select Checkbox </ContextMenuItem>
                 <ContextMenuItem @click="$router.push('/test-report')"> Test Report </ContextMenuItem>
                 <ContextMenuItem @click="$router.push('/swiper-slider')"> Swiper Slider </ContextMenuItem>
+                <ContextMenuItem @click="$router.push('/apex-chart')"> ApexChart </ContextMenuItem>
+                <ContextMenuItem @click="$router.push('/google-map')"> Google Map </ContextMenuItem>
                 <ContextMenuItem @click="closeMenu"> Action 4 {{ contextData }} </ContextMenuItem>
                 <ContextMenuItem @click="closeMenu"> Cancel </ContextMenuItem>
             </template>

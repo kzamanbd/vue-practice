@@ -103,6 +103,15 @@ const router = createRouter({
                 layout: 'blank',
             },
         },
+        {
+            path: '/google-map',
+            name: 'Google Map',
+            component: () => import('@/views/GoogleMap.vue'),
+            meta: {
+                requiresAuth: false,
+                layout: 'blank',
+            },
+        },
 
         {
             path: '/:pathMatch(.*)*',

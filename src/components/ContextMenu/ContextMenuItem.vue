@@ -21,8 +21,8 @@
 
         &:hover,
         &:focus {
-            background: #fff;
-            color: #dedede;
+            background: #dedede;
+            color: #000;
             outline: none;
         }
     }
