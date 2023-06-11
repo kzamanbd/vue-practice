@@ -3,11 +3,14 @@
     import { Loader } from '@googlemaps/js-api-loader';
 
     const googleMap = new Loader({
-        apiKey: 'AIzaSyAUF9iPbyH4nrwkZXVza__RSrSWiNOKsuo',
+        apiKey: 'AIzaSyC_z0CzH6dY9xTCO3JXOYshQ6ge9nw0AqM',
         version: 'weekly',
     });
 
-    const initialPosition = { lat: 20.025145019607272, lng: 38.82076434695159 };
+    const initialPosition = {
+        lat: 34.38478004572077,
+        lng: 21.1997531486372,
+    };
 
     googleMap.load().then(google => {
         console.log('google', google);
@@ -15,6 +18,13 @@
             center: initialPosition,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             scrollwheel: true,
+        });
+
+        // pin locations
+        new google.maps.Marker({
+            position: initialPosition,
+            label: 'ME',
+            map: map,
         });
 
         const infoWindow = new google.maps.InfoWindow();
