@@ -112,6 +112,15 @@ const router = createRouter({
                 layout: 'blank',
             },
         },
+        {
+            path: '/draggable',
+            name: 'VueDraggable',
+            component: () => import('@/views/VueDraggable.vue'),
+            meta: {
+                requiresAuth: false,
+                layout: 'blank',
+            },
+        },
 
         {
             path: '/:pathMatch(.*)*',

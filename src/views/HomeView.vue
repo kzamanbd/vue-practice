@@ -1,37 +1,9 @@
 <script setup>
-    import menus from '@/assets/menus.json';
     import ContextMenu from '@/components/ContextMenu/ContextMenu.vue';
     import ContextMenuItem from '@/components/ContextMenu/ContextMenuItem.vue';
     import HelloWorld from '@/components/HelloWorld.vue';
     import TheWelcome from '@/components/TheWelcome.vue';
     import { ref } from 'vue';
-
-    console.log(menus);
-
-    const filterMenus = menus.parents.map(m => {
-        const main = {
-            id: m.id,
-            feature_name: m.group_name,
-            description: m.description,
-            for: null,
-            icon: null,
-            group_id: null,
-            url: null,
-        };
-        return main;
-    });
-    console.log(
-        [...filterMenus, ...menus.children].map(item => {
-            return {
-                id: item.id,
-                name: item.feature_name,
-                description: item.description,
-                icon: item.icon,
-                parent_id: item.module_id || null,
-                url: item.url,
-            };
-        }),
-    );
 
     const menu = ref(null);
     const closeMenu = () => {
@@ -61,12 +33,14 @@
                 <ContextMenuItem @click="$router.push('/swiper-slider')"> Swiper Slider </ContextMenuItem>
                 <ContextMenuItem @click="$router.push('/apex-chart')"> ApexChart </ContextMenuItem>
                 <ContextMenuItem @click="$router.push('/google-map')"> Google Map </ContextMenuItem>
+                <ContextMenuItem @click="$router.push('/draggable')"> Vue Draggable </ContextMenuItem>
                 <ContextMenuItem @click="closeMenu"> Action 4 {{ contextData }} </ContextMenuItem>
                 <ContextMenuItem @click="closeMenu"> Cancel </ContextMenuItem>
             </template>
         </ContextMenu>
     </div>
 </template>
+
 <style scoped>
     @media (min-width: 1024px) {
         #homeView {
