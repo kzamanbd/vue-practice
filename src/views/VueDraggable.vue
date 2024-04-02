@@ -1,18 +1,20 @@
 <script setup>
     import menus from '@/assets/menus.json';
 
-    const filterMenus = menus.parents.map(m => {
-        return {
-            id: m.id,
-            feature_name: m.group_name,
-            description: m.description,
-            for: null,
-            icon: null,
-            group_id: null,
-            url: null,
-            children: menus.children.filter(c => c.module_id === m.id),
-        };
-    });
+    const filterMenus = menus.parents
+        .map(m => {
+            return {
+                id: m.id,
+                feature_name: m.group_name,
+                description: m.description,
+                for: null,
+                icon: null,
+                group_id: null,
+                url: null,
+                children: menus.children.filter(c => c.module_id === m.id),
+            };
+        })
+        .filter(m => m.children.length);
     console.log([...filterMenus]);
 </script>
 

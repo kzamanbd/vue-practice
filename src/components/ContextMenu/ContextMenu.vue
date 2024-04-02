@@ -1,11 +1,5 @@
 <template>
-    <div
-        class="context-menu"
-        ref="popper"
-        v-show="isVisible"
-        tabindex="-1"
-        v-click-outside="close"
-        @contextmenu.capture.prevent>
+    <div class="context-menu" ref="popper" v-show="isVisible" tabindex="-1" @contextmenu.capture.prevent>
         <ul>
             <slot :contextData="contextData" />
         </ul>
@@ -14,7 +8,6 @@
 
 <script>
     import Popper from 'popper.js';
-    import ClickOutside from 'vue-click-outside';
     // @vue/component
     export default {
         props: {
@@ -28,9 +21,6 @@
                 opened: false,
                 contextData: {},
             };
-        },
-        directives: {
-            ClickOutside,
         },
         computed: {
             isVisible() {

@@ -1,4 +1,5 @@
 <template>
+    <progress-bar />
     <component :is="resolveLayout">
         <router-view />
     </component>
@@ -9,6 +10,7 @@
     import LayoutBlank from '@/layouts/LayoutBlank.vue';
     import LayoutContent from '@/layouts/LayoutContent.vue';
     import { useRoute } from 'vue-router';
+    import ProgressBar from '@/components/ProgressBar.vue';
 
     const route = useRoute();
     const resolveLayout = computed(() => {

@@ -1,5 +1,5 @@
-import { createStore } from 'vuex';
 import $axios from '@/plugins/axios';
+import { createStore } from 'vuex';
 
 // ? init vuex store
 export default createStore({

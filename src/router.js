@@ -77,15 +77,6 @@ const router = createRouter({
             },
         },
         {
-            path: '/test-report',
-            name: 'TestReport',
-            component: () => import('@/views/TestReport/TestReport.vue'),
-            meta: {
-                requiresAuth: false,
-                layout: 'blank',
-            },
-        },
-        {
             path: '/swiper-slider',
             name: 'SwiperSlide',
             component: () => import('@/views/SwiperSlide.vue'),
