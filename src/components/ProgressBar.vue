@@ -1,5 +1,5 @@
 <template>
-    <div v-show="isLoading" class="progress loading-container w-100">
+    <div v-show="isLoading" class="progress loading-progress">
         <div
             class="progress-bar"
             role="progressbar"
@@ -31,12 +31,13 @@
     });
 </script>
 <style>
-    .loading-container {
+    .loading-progress {
         position: absolute;
         top: 0;
         left: 0;
         height: 2px;
         z-index: 100;
+        width: 100%;
     }
     .bg-primary {
         background-color: var(--blue) !important;
