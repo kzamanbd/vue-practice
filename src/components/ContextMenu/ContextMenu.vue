@@ -1,6 +1,6 @@
 <template>
-    <div class="context-menu" ref="popper" v-show="isVisible" tabindex="-1" @contextmenu.capture.prevent>
-        <ul>
+    <div class="context-menu" ref="popper" v-show="opened" tabindex="-1" @contextmenu.capture.prevent>
+        <ul class="menu-container">
             <slot :contextData="contextData" />
         </ul>
     </div>
@@ -21,11 +21,6 @@
                 opened: false,
                 contextData: {},
             };
-        },
-        computed: {
-            isVisible() {
-                return this.opened;
-            },
         },
         methods: {
             open(evt, contextData) {
@@ -104,6 +99,14 @@
         ul {
             padding: 0px;
             margin: 0px;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 998;
         }
     }
 </style>
