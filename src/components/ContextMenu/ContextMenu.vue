@@ -1,5 +1,5 @@
 <template>
-    <div class="context-menu" ref="popper" v-show="opened" tabindex="-1" @contextmenu.capture.prevent>
+    <div class="context-menu" ref="popper" v-show="opened" @contextmenu.capture.prevent>
         <ul class="menu-container">
             <slot :contextData="contextData" />
         </ul>
