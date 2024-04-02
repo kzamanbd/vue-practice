@@ -1,10 +1,12 @@
 <template>
+    <ProgressBar />
     <TopHeader />
     <slot />
 </template>
 
 <script setup>
     import { useStore } from 'vuex';
+    import ProgressBar from '@/components/ProgressBar.vue';
     const store = useStore();
     store.dispatch('user');
     store.dispatch('serverInit');
