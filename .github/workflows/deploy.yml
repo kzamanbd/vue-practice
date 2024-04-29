@@ -1,0 +1,36 @@
+name: Build and Test
+
+on:
+    push:
+        branches: [master]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v2
+              with:
+                  node-version: '20'
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Build project
+              run: npm run build
+
+            - name: Set environment variables
+              run: |
+                  echo "VITE_API_URL=https://your-api-url.com" >> $GITHUB_ENV
+                  echo "VITE_APP_ENV=production" >> $GITHUB_ENV
+
+            - name: Display environment variables
+              run: |
+                  echo "API URL: $VITE_API_URL"
+                  echo "App Environment: $VITE_APP_ENV"
+
+            # Add more steps as needed, like deploying the built application.
